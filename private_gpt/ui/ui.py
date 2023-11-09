@@ -77,12 +77,14 @@ def _chat(message: str, history: list[list[str]], mode: str, *_: Any) -> Any:
 
 
 def _list_ingested_files() -> list[str]:
-    files = set()
-    for ingested_document in ingest_service.list_ingested():
-        if ingested_document.doc_metadata is not None:
-            files.add(
-                ingested_document.doc_metadata.get("file_name") or "[FILE NAME MISSING]"
-            )
+    files = {
+        (
+            ingested_document.doc_metadata.get("file_name")
+            or "[FILE NAME MISSING]"
+        )
+        for ingested_document in ingest_service.list_ingested()
+        if ingested_document.doc_metadata is not None
+    }
     return list(files)
 
 
