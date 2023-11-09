@@ -18,7 +18,7 @@ def test_chat_route_produces_a_stream(test_client: TestClient) -> None:
     ]
     assert response.status_code == 200
     assert "text/event-stream" in response.headers["content-type"]
-    assert len(events) > 0
+    assert events
     assert events[-1] == "[DONE]"
 
 

@@ -15,8 +15,7 @@ class IngestHelper:
 
         response = self.test_client.post("/v1/ingest", files=files)
         assert response.status_code == 200
-        ingest_result = IngestResponse.model_validate(response.json())
-        return ingest_result
+        return IngestResponse.model_validate(response.json())
 
 
 @pytest.fixture()

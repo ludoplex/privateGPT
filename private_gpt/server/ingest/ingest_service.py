@@ -156,12 +156,11 @@ class IngestService:
         ingested_docs = []
         try:
             docstore = self.storage_context.docstore
-            ingested_docs_ids: set[str] = set()
-
-            for node in docstore.docs.values():
-                if node.ref_doc_id is not None:
-                    ingested_docs_ids.add(node.ref_doc_id)
-
+            ingested_docs_ids: set[str] = {
+                node.ref_doc_id
+                for node in docstore.docs.values()
+                if node.ref_doc_id is not None
+            }
             for doc_id in ingested_docs_ids:
                 ref_doc_info = docstore.get_ref_doc_info(ref_doc_id=doc_id)
                 doc_metadata = None
@@ -176,7 +175,6 @@ class IngestService:
                 )
         except ValueError:
             logger.warning("Got an exception when getting list of docs", exc_info=True)
-            pass
         logger.debug("Found count=%s ingested documents", len(ingested_docs))
         return ingested_docs
 

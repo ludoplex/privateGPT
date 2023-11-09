@@ -24,8 +24,9 @@ def _chromadb_doc_id_metadata_filter(
         doc_filter_items = []
         if len(context_filter.docs_ids) > 1:
             doc_filter = {"$or": doc_filter_items}
-            for doc_id in context_filter.docs_ids:
-                doc_filter_items.append({"doc_id": doc_id})
+            doc_filter_items.extend(
+                {"doc_id": doc_id} for doc_id in context_filter.docs_ids
+            )
         else:
             doc_filter = {"doc_id": context_filter.docs_ids[0]}
         return doc_filter

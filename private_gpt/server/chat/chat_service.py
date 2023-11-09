@@ -68,11 +68,11 @@ class ChatService:
                 MetadataReplacementPostProcessor(target_metadata_key="window"),
             ],
         )
-        if streaming:
-            result = chat_engine.stream_chat(message, chat_history)
-        else:
-            result = chat_engine.chat(message, chat_history)
-        return result
+        return (
+            chat_engine.stream_chat(message, chat_history)
+            if streaming
+            else chat_engine.chat(message, chat_history)
+        )
 
     def stream_chat(
         self,
