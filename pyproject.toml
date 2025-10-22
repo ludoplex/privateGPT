@@ -10,14 +10,14 @@ fastapi = { extras = ["all"], version = "^0.103.1" }
 boto3 = "^1.28.56"
 injector = "^0.21.0"
 pyyaml = "^6.0.1"
-python-multipart = "^0.0.6"
-pypdf = "^3.16.2"
-llama-index = "0.8.47"
+python-multipart = "^0.0.18"
+pypdf = "^6.0.0"
+llama-index = "0.13.0"
 chromadb = "^0.4.13"
 watchdog = "^3.0.0"
 
 [tool.poetry.group.dev.dependencies]
-black = "^22"
+black = "^25"
 mypy = "^1.2"
 pre-commit = "^2"
 pytest = "^7"
@@ -40,7 +40,7 @@ numpy = "1.26.0"
 sentence-transformers = "^2.2.2"
 # https://stackoverflow.com/questions/76327419/valueerror-libcublas-so-0-9-not-found-in-the-system-path
 torch = ">=2.0.0, !=2.0.1, !=2.1.0"
-transformers = "^4.34.0"
+transformers = "^4.53.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
